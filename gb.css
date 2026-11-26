@@ -1,0 +1,60 @@
+/* Game Box Pro shared layer: safe areas, touch, glass Home button */
+html,body{max-width:100%;overflow-x:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+input,textarea{-webkit-user-select:text;user-select:text}
+body{min-height:100vh;min-height:100dvh}
+#gb-home{position:fixed;z-index:99999;top:calc(10px + env(safe-area-inset-top));left:calc(10px + env(safe-area-inset-left));display:flex;align-items:center;gap:6px;height:40px;padding:0 14px 0 10px;border-radius:999px;
+color:#f4f6ff;text-decoration:none;font:600 14px/1 "Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;
+background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.28);
+backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
+box-shadow:0 8px 24px rgba(3,4,30,.45),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
+#gb-home:active{transform:scale(.93)}
+#gb-home:focus-visible{outline:2px solid #22e1ff;outline-offset:2px}
+
+/* Theme layer: follows the launcher's chosen theme (blue / sunset / emerald) */
+:root{--gb-a:#22e1ff;--gb-b:#3b82ff;--gb-c:#8b5cff}
+[data-theme=sunset]{--gb-a:#ffb347;--gb-b:#ff5f6d;--gb-c:#c04bff}
+[data-theme=emerald]{--gb-a:#34e6a0;--gb-b:#10b981;--gb-c:#06b6d4}
+html{overscroll-behavior:none;-webkit-touch-callout:none;-webkit-text-size-adjust:100%;background:#070718}
+#gb-home{font-family:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif}
+#gb-home:hover{border-color:var(--gb-a);box-shadow:0 8px 24px rgba(3,4,30,.45),0 0 18px var(--gb-a),inset 0 1px 0 rgba(255,255,255,.35)}
+#gb-home:focus-visible{outline-color:var(--gb-a)}
+button,[role=button],a{-webkit-touch-callout:none}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+body,button,input,select,textarea,h1,h2,h3{font-family:"Outfit",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif!important}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.28;mix-blend-mode:screen;background:radial-gradient(420px 320px at 0 0,var(--gb-c),transparent 70%),radial-gradient(420px 320px at 100% 100%,var(--gb-a),transparent 70%)}
+
+.gb-primary{background:linear-gradient(135deg,#3b82ff,#8b5cff)!important;color:#fff!important;border:1px solid rgba(255,255,255,.35)!important;border-radius:999px!important;box-shadow:0 6px 22px rgba(59,130,255,.5),inset 0 1px 0 rgba(255,255,255,.4)!important}
+.gb-menu-home{display:block;margin:12px auto 0;width:max-content;max-width:100%;padding:10px 22px;border-radius:999px;color:#f4f6ff;text-decoration:none;font:600 .95rem Outfit,system-ui,sans-serif;text-align:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+#gb-sheet{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;background:rgba(7,7,24,.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#gb-sheet>div{width:min(86vw,320px);padding:24px;border-radius:26px;display:grid;gap:12px;text-align:center;color:#f4f6ff;background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);box-shadow:0 18px 50px rgba(3,4,30,.5)}
+#gb-sheet h2{margin:0 0 4px;font-size:1.5rem}
+#gb-sheet button{border:1px solid rgba(255,255,255,.22);color:#fff;padding:14px;border-radius:999px;font:600 1rem Outfit,sans-serif;background:rgba(255,255,255,.08)}
+/* Shared game shell: HUD, pause button, overlay card */
+.gh{position:fixed;top:calc(12px + env(safe-area-inset-top));left:14px;right:14px;display:flex;justify-content:space-between;align-items:center;gap:8px;pointer-events:none;z-index:3;font-family:Outfit,system-ui,sans-serif;color:#f4f6ff}
+.gp{min-width:70px;padding:9px 18px;border-radius:999px;font-weight:600;text-align:center;background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.gh #cb{color:#22e1ff}.gh #cb:empty{visibility:hidden}
+.gh #pz{pointer-events:auto;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.22);color:#fff;font-size:13px;background:rgba(255,255,255,.1);backdrop-filter:blur(16px)}
+#gb-ov{position:fixed;inset:0;display:none;place-items:center;background:rgba(7,7,24,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:5}
+.gb-card{width:min(88vw,340px);padding:26px 22px;border-radius:28px;text-align:center;display:grid;gap:12px;color:#f4f6ff;background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);box-shadow:0 18px 50px rgba(3,4,30,.5),inset 0 1px 0 rgba(255,255,255,.28)}
+.gb-card h1{margin:0;font-size:2.3rem;letter-spacing:-.03em;background:linear-gradient(90deg,#22e1ff,#8b5cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gb-card p{margin:0;color:#9aa3d0;font-size:.95rem;line-height:1.5}.gb-card b{color:#f4f6ff}
+.gb-card button{border:1px solid rgba(255,255,255,.22);color:#fff;padding:14px;border-radius:999px;font:600 1rem Outfit,sans-serif;background:rgba(255,255,255,.08)}
+.gb-card button.p{background:linear-gradient(135deg,#3b82ff,#8b5cff);box-shadow:0 6px 22px rgba(59,130,255,.5),inset 0 1px 0 rgba(255,255,255,.4)}
+
+/* ===== Game Box Pro design tokens (v7) — use these in every game ===== */
+:root{
+  --gb-bg:#070718;--gb-text:#f4f6ff;--gb-muted:#9aa3d0;
+  --gb-glass:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.04));
+  --gb-edge:rgba(255,255,255,.18);--gb-shadow:0 18px 50px rgba(3,4,30,.5);
+  --gb-r-card:28px;--gb-r-btn:999px;--gb-ease:cubic-bezier(.34,1.56,.64,1);
+  --gb-grad:linear-gradient(135deg,var(--gb-b),var(--gb-c));
+}
+/* Reusable pieces */
+.gb-glass{background:var(--gb-glass);border:1px solid var(--gb-edge);backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);box-shadow:var(--gb-shadow),inset 0 1px 0 rgba(255,255,255,.28)}
+.gb-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:var(--gb-r-btn);border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:#fff;font:600 1rem Outfit,system-ui,sans-serif;cursor:pointer;transition:transform .2s var(--gb-ease),background .2s}
+.gb-btn:active{transform:scale(.95)}
+.gb-btn.p{background:var(--gb-grad);border-color:rgba(255,255,255,.35);box-shadow:0 6px 22px rgba(59,130,255,.5),inset 0 1px 0 rgba(255,255,255,.4)}
+.gb-title{margin:0;font-weight:700;letter-spacing:-.03em;background:linear-gradient(90deg,var(--gb-a),var(--gb-c));-webkit-background-clip:text;background-clip:text;color:transparent}
+.gb-pill{padding:8px 16px;border-radius:999px;font-weight:600;font-size:.9rem;color:var(--gb-text);background:var(--gb-glass);border:1px solid var(--gb-edge)}
+button:focus-visible,a:focus-visible,[role=button]:focus-visible{outline:2px solid var(--gb-a);outline-offset:2px}
